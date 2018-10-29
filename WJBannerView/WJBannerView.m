@@ -249,6 +249,7 @@
         _contentView = [[UIScrollView alloc] init];
         _contentView.showsHorizontalScrollIndicator = NO;
         _contentView.showsVerticalScrollIndicator = NO;
+        _contentView.scrollsToTop = NO;
         _contentView.bounces = NO;
         _contentView.delegate = self;
         _contentView.pagingEnabled = YES;
