@@ -67,6 +67,7 @@
     NSInteger num = [self.dataSource wj_numberOfRowInWJBannerView:self];
     if (num == 0) return;
     if (num > 1) [self startTimer];
+    self.currIndex = 0;
     self.pageControl.numberOfPages = num;
     //设置scrollView可滚动的范围
     self.contentView.contentSize = num > 1 ? CGSizeMake(3 * CGRectGetWidth(self.bounds), 0) : CGSizeZero;
