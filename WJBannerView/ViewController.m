@@ -21,6 +21,7 @@
     [super viewDidLoad];
     WJBannerView *bannerView = [[WJBannerView alloc] init];
     bannerView.frame = CGRectMake(0, 100, self.view.frame.size.width, 200);
+    bannerView.middleImageViewEdgeLeft = 35;
     bannerView.dataSource = self;
     bannerView.delegate = self;
     [self.view addSubview:bannerView];
@@ -43,7 +44,7 @@
 
 - (NSArray *)array {
     if (!_array) {
-        _array = @[@"https://img.tbb.la/images/201803/thumb_img/6829_thumb_P_1522108048220.jpg",
+        _array = @[
                    @"https://img.tbb.la/images/201803/thumb_img/6829_thumb_P_1522108048012.jpg",
                    @"https://img.tbb.la/images/201803/thumb_img/6829_thumb_P_1522108048868.jpg"];
     }
