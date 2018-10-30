@@ -11,7 +11,7 @@
 
 @interface WJBannerView : UIView
 
-@property (nonatomic, strong) UIImage *imagePlaceholder;//默认图片
+@property (nonatomic, strong) UIImage *placeholderImage;//默认图片
 
 @property (nonatomic, copy) NSString *pageImage;//翻页小点图片
 

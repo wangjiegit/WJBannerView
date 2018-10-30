@@ -68,6 +68,7 @@
 
 - (void)reloadData {
     assert(self.dataSource);
+    [self stopTimer];
     NSInteger num = [self.dataSource wj_numberOfRowInWJBannerView:self];
     if (num == 0) return;
     if (num > 1) [self startTimer];
@@ -84,13 +85,13 @@
     self.currImageView.frame = CGRectMake((num > 1 ? width : 0), 0, width, CGRectGetHeight(self.bounds));
     //获取第一张图片
     NSString *imgName = [self.dataSource wj_bannerView:self imageNameForIndex:0];
-    [self.currImageView sd_setImageWithURL:[NSURL URLWithString:imgName] placeholderImage:self.imagePlaceholder];
+    [self.currImageView sd_setImageWithURL:[NSURL URLWithString:imgName] placeholderImage:self.placeholderImage];
     
     if (self.middleImageViewEdgeLeft > 0 && num > 1) {
         NSString *leftImgName = [self.dataSource wj_bannerView:self imageNameForIndex:(num - 1)];
-        [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:leftImgName] placeholderImage:self.imagePlaceholder];
+        [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:leftImgName] placeholderImage:self.placeholderImage];
         NSString *rightImgName = [self.dataSource wj_bannerView:self imageNameForIndex:1];
-        [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:rightImgName] placeholderImage:self.imagePlaceholder];
+        [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:rightImgName] placeholderImage:self.placeholderImage];
         [self resetFrame];
     }
 }
@@ -174,7 +175,7 @@
         self.otherImageView.frame = rect;
     }
     NSString *imgName = [self.dataSource wj_bannerView:self imageNameForIndex:otherIndex];
-    [self.otherImageView sd_setImageWithURL:[NSURL URLWithString:imgName] placeholderImage:self.imagePlaceholder];
+    [self.otherImageView sd_setImageWithURL:[NSURL URLWithString:imgName] placeholderImage:self.placeholderImage];
     
 }
 
@@ -224,7 +225,7 @@
     self.currIndex = self.nextIndex;
     
     NSString *imgName = [self.dataSource wj_bannerView:self imageNameForIndex:self.currIndex];
-    [self.currImageView sd_setImageWithURL:[NSURL URLWithString:imgName] placeholderImage:self.imagePlaceholder];
+    [self.currImageView sd_setImageWithURL:[NSURL URLWithString:imgName] placeholderImage:self.placeholderImage];
     self.pageControl.currentPage = self.currIndex;
     
     if (self.middleImageViewEdgeLeft > 0) {
@@ -232,10 +233,10 @@
         NSInteger leftIndex = self.currIndex - 1;
         if (leftIndex < 0) leftIndex = num - 1;
         NSString *leftImgName = [self.dataSource wj_bannerView:self imageNameForIndex:leftIndex];
-        [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:leftImgName] placeholderImage:self.imagePlaceholder];
+        [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:leftImgName] placeholderImage:self.placeholderImage];
         NSInteger rightIndex = (self.currIndex + 1) % num;
         NSString *rightImgName = [self.dataSource wj_bannerView:self imageNameForIndex:rightIndex];
-        [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:rightImgName] placeholderImage:self.imagePlaceholder];
+        [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:rightImgName] placeholderImage:self.placeholderImage];
         [self resetFrame];
     }
     self.contentView.contentOffset = CGPointMake(width, 0);
