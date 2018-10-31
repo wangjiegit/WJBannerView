@@ -204,7 +204,7 @@
 //手指离开拖动的时候开启定时器
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self startTimer];
-    //解决手指一直滑动到scrollview的范围外的bug，这个时候的没有在减速
+    //当 bounces = NO时 解决手指一直滑动到scrollview的范围外的bug，这个时候的没有在减速
     if (!decelerate) [self pauseRoll];
 }
 
