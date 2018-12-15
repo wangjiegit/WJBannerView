@@ -17,6 +17,8 @@
 
 @property (nonatomic, copy) NSString *currentPageImage;
 
+@property (nonatomic) CGFloat cornerRadius;//banner圆角 默认0
+
 @property (nonatomic, weak) id<WJBannerViewDataSource> dataSource;
 
 @property (nonatomic, weak) id<WJBannerViewDelegate> delegate;

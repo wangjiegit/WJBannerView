@@ -36,7 +36,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.zoomScale = 0.92;
+        self.zoomScale = 0.95;
         self.timeInterval = 3;
         self.clipsToBounds = YES;
         [self setupUI];
@@ -264,6 +264,7 @@
         _otherImageView = [[UIImageView alloc] init];
         _otherImageView.contentMode = UIViewContentModeScaleAspectFill;
         _otherImageView.clipsToBounds = YES;
+        if (self.cornerRadius > 0) _otherImageView.layer.cornerRadius = self.cornerRadius;
         [self.contentView addSubview:_otherImageView];
     }
     return _otherImageView;
@@ -274,6 +275,7 @@
         _leftImageView = [[UIImageView alloc] init];
         _leftImageView.contentMode = UIViewContentModeScaleAspectFill;
         _leftImageView.clipsToBounds = YES;
+        if (self.cornerRadius > 0) _leftImageView.layer.cornerRadius = self.cornerRadius;
         [self.contentView addSubview:_leftImageView];
     }
     return _leftImageView;
@@ -284,6 +286,7 @@
         _currImageView = [[UIImageView alloc] init];
         _currImageView.contentMode = UIViewContentModeScaleAspectFill;
         _currImageView.clipsToBounds = YES;
+        if (self.cornerRadius > 0) _currImageView.layer.cornerRadius = self.cornerRadius;
         [self.contentView addSubview:_currImageView];
     }
     return _currImageView;
@@ -294,6 +297,7 @@
         _rightImageView = [[UIImageView alloc] init];
         _rightImageView.contentMode = UIViewContentModeScaleAspectFill;
         _rightImageView.clipsToBounds = YES;
+        if (self.cornerRadius > 0) _rightImageView.layer.cornerRadius = self.cornerRadius;
         [self.contentView addSubview:_rightImageView];
     }
     return _rightImageView;
