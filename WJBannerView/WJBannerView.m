@@ -71,10 +71,10 @@
     [self stopTimer];
     NSInteger num = [self.dataSource wj_numberOfRowInWJBannerView:self];
     if (num == 0) return;
-    if (num > 1) [self startTimer];
+    [self startTimer];
     self.currIndex = 0;
     self.pageControl.numberOfPages = num;
-
+    
     CGFloat width = CGRectGetWidth(self.bounds) - self.middleImageViewEdgeLeft * 2;
     
     //设置scrollView可滚动的范围
@@ -101,7 +101,7 @@
     NSInteger num = [self.dataSource wj_numberOfRowInWJBannerView:self];
     CGFloat width = CGRectGetWidth(self.bounds) - self.middleImageViewEdgeLeft * 2;
     self.currImageView.frame = CGRectMake((num > 1 ? width : 0), 0, width, CGRectGetHeight(self.bounds));
-
+    
     CGFloat zoomX =  width * (1 - self.zoomScale) / 2.0;//缩放过的坐标
     CGFloat zoomY = CGRectGetHeight(self.bounds) * (2 - 2 * self.zoomScale) / 2.0;
     CGRect rect = CGRectMake(zoomX, zoomY, width * self.zoomScale, CGRectGetHeight(self.bounds) * (self.zoomScale * 2 - 1));
@@ -114,8 +114,11 @@
 //开启定时器
 - (void)startTimer {
     [self stopTimer];
-    timer = [NSTimer timerWithTimeInterval:self.timeInterval target:self selector:@selector(intervalRoll) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    NSInteger num = [self.dataSource wj_numberOfRowInWJBannerView:self];
+    if (num > 1 && self.timeInterval > 0) {
+        timer = [NSTimer timerWithTimeInterval:self.timeInterval target:self selector:@selector(intervalRoll) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    }
 }
 
 //关闭定时器
